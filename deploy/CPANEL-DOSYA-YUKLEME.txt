@@ -1,0 +1,73 @@
+================================================================================
+cPanel — SSH yok, sadece dosya yükleme + phpMyAdmin
+================================================================================
+
+1) VERİTABANI — iki yoldan biri
+
+   A) phpMyAdmin ile SQL (SSH gerekmez)
+   - cPanel > MySQL Veritabanları: boş DB + kullanıcı oluştur, kullanıcıyı DB’ye bağla.
+   - phpMyAdmin > bu veritabanını seç > İçe Aktar > deploy/install-mysql.sql
+   - Not: SQL mevcut tabloları DROP eder; sadece İLK kurulumda kullanın.
+
+   B) Eski yöntem: tarayıcıdan bir kez “migrate” (SSH gerekmez)
+   - deploy/migrate-once.php.example dosyasını kopyala → public/ içine koy, adını
+     tahmin edilmesi zor yap (ör. uid-x9k2-setup.php).
+   - Dosya içindeki $secret değerini değiştir; tarayıcıda ?key=AYNI_SECRET ile aç.
+   - Laravel migrate --force çalışır; bitince bu PHP dosyasını sunucudan SİL.
+   - .env içinde DB_* doğru olmalı; vendor/ yüklenmiş olmalı.
+   - (A ile SQL import ettiysen genelde “Nothing to migrate” görürsün — sorun değil.)
+
+2) DOSYA YAPISI (tipik: https://medlabs.tech/uid)
+   Seçenek A — Document root = .../uid/public
+   - Tüm Laravel projesini sunucuda örneğin: /home/KULLANICI/uid/
+   - Alan adının kökü doğrudan .../uid/public klasörünü göstersin.
+   - public içinde: index.php, .htaccess, build/, images/
+
+   Seçenek B — public_html/uid altında
+   - Laravel kökü: public_html/uid/ (app, bootstrap, config, ...)
+   - public klasörünün İÇERİĞİNİ (index.php, .htaccess, build, images) 
+     public_html/uid/ altına da koyup index.php içindeki yolları kontrol edin
+     (standart Laravel: index.php iki üst dizinde vendor arar).
+
+   Özet: Tarayıcıya açılan klasör mutlaka "public" olmalıdır.
+
+3) COMPOSER (vendor klasörü)
+   SSH yoksa bilgisayarında proje klasöründe:
+   composer install --no-dev --optimize-autoloader
+   Sonra oluşan vendor/ klasörünün tamamını FTP ile sunucudaki proje köküne yükle.
+   (cPanel’de “Composer” menüsü varsa oradan da kurulabilir.)
+
+4) BİLGİSAYARINDA ÖNCE BUILD
+   .env (sadece build anında):
+   APP_URL=https://medlabs.tech/uid
+   ASSET_URL=https://medlabs.tech/uid
+   VITE_APP_SUBPATH=/uid
+
+   Komutlar:
+   npm run build
+   → public/build klasörünü sunucudaki public (veya eşdeğeri) içine yükle.
+
+5) SUNUCUDA .env
+   - Proje köküne .env kopyala (FTP ile).
+   - APP_KEY: kendi bilgisayarında "php artisan key:generate" ile üretilen değeri yapıştır.
+   - DB_* alanlarını hosting DB bilgilerinle doldur.
+   - APP_URL, ASSET_URL, VITE_APP_SUBPATH canlıya göre (build ile aynı mantık).
+
+6) İZİNLER (File Manager)
+   - storage/ ve bootstrap/cache/ yazılabilir olmalı (genelde 755 veya 775).
+
+7) storage link
+   SSH yoksa genelde gerekmez (bu projede dosya upload yok).
+   Gerekirse destekten "storage symlink" isteyin veya bazı panellerde "Create symbolic link" vardır.
+
+8) ADMIN GİRİŞ
+   https://medlabs.tech/uid/admin/login
+   E-posta: admin@uid.local
+   Şifre: Admin12345!
+   → Hemen değiştirin (phpMyAdmin’de admins.password için yeni bcrypt veya ileride araç).
+
+9) CACHE
+   SSH yoksa config/route/view cache zorunlu değil.
+   Sorun olursa geçici APP_DEBUG=true ile hata mesajına bakın (canlıda kapatın).
+
+================================================================================

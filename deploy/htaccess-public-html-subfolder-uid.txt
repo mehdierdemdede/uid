@@ -1,0 +1,6 @@
+# Site adresi https://medlabs.tech/uid şeklinde ALT KLASÖR ise,
+# public_html/uid/ içindeki .htaccess dosyasına şunu ekleyin (RewriteEngine On satırından sonra):
+
+# RewriteBase /uid/
+
+# Bazı sunucularda gerekmez; 404 alıyorsanız deneyin.

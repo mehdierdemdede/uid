@@ -1,0 +1,8 @@
+# core/ klasörünü yanlışlıkla public_html içine koyduysanız,
+# core/.htaccess dosyası oluşturup içine şunu koyun (tarayıcıdan core erişimini keser):
+
+# Apache 2.4+
+Require all denied
+
+# Eski Apache:
+# Deny from all

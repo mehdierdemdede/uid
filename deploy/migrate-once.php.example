@@ -1,0 +1,54 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * Dosyayi public_html/uid/ icine koyun (ornek: uid-migrate-once.php).
+ *
+ * Yapi: public_html/uid/ (web) + uid_core/ (Laravel, public_html ile ayni seviyede)
+ */
+
+$core = dirname(__DIR__, 2).'/uid_core';
+
+$secret = 'BURAYA-UZUN-RASTGELE-BIR-SIFRE-YAZIN-DEGISTIRIN';
+
+if (! hash_equals($secret, (string) ($_GET['key'] ?? ''))) {
+    http_response_code(403);
+    header('Content-Type: text/plain; charset=utf-8');
+    exit('Forbidden');
+}
+
+if (! is_file($core.'/vendor/autoload.php')) {
+    http_response_code(500);
+    header('Content-Type: text/plain; charset=utf-8');
+    exit('core yolu hatali: '.$core);
+}
+
+define('LARAVEL_START', microtime(true));
+
+require $core.'/vendor/autoload.php';
+
+/** @var \Illuminate\Foundation\Application $app */
+$app = require_once $core.'/bootstrap/app.php';
+
+$input = new Symfony\Component\Console\Input\ArgvInput([
+    'artisan',
+    'migrate',
+    '--force',
+]);
+
+header('Content-Type: text/html; charset=utf-8');
+echo '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Migrate</title></head><body><pre>';
+
+$status = $app->handleCommand($input);
+
+echo "\n\n---\nExit code: ".(int) $status;
+echo '</pre>';
+
+if ($status === 0) {
+    echo '<p><strong style="color:green">Tamam.</strong> Bu dosyayi sunucudan silin.</p>';
+} else {
+    echo '<p><strong style="color:red">Hata.</strong> core/.env DB ayarlari ve storage/logs/laravel.log kontrol edin.</p>';
+}
+
+echo '</body></html>';
