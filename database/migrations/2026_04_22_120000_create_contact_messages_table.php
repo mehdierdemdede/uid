@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('contact_messages', function (Blueprint $table): void {
             $table->id();
             $table->string('name', 100);
-            $table->string('email', 255)->index();
+            $table->string('email', 191)->index();
             $table->text('note');
             $table->string('submitted_ip', 45)->nullable();
             $table->text('user_agent')->nullable();
