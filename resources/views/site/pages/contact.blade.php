@@ -19,9 +19,6 @@
 
 <section class="bg-[#efefef] py-14 md:py-20">
     <div class="mx-auto max-w-2xl px-4 md:px-8">
-        <p class="mb-6 text-xs text-slate-600 md:text-sm">
-            Not: Sayfadaki iletişim bilgileri şu an geçici (dummy) olarak yer almaktadır; resmi bilgilerle güncellenecektir.
-        </p>
         @if(session('success'))
             <div class="mb-6 border border-green-200 bg-green-50 p-4 text-sm text-green-800">
                 {{ session('success') }}

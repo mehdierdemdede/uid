@@ -17,11 +17,7 @@
                 <h3 class="mb-3 text-lg font-bold text-slate-900">İletişim</h3>
                 <address class="not-italic text-sm leading-relaxed text-slate-800 font-medium">
                     UID Bosna Hersek<br>
-                    Zmaja od Bosne 12<br>
-                    71000 Sarajevo (Bosna Hersek)<br>
-                    +387 33 000 000<br>
-                    <a href="mailto:bosna@u-id.org" class="inline-block hover:text-uid-navy">bosna@u-id.org</a><br>
-                    <span class="mt-1 inline-block text-xs text-slate-500">Not: Bu iletişim bilgileri geçici (dummy) olarak eklenmiştir, yakında güncellenecektir.</span>
+                    <a href="mailto:bosna@u-id.org" class="inline-block hover:text-uid-navy">bosna@u-id.org</a>
                 </address>
             </div>
             <div>
