@@ -12,7 +12,7 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $news = News::latest()->paginate(10);
+        $news = News::with('createdBy', 'updatedBy')->latest()->paginate(10);
         return view('admin.news.index', compact('news'));
     }
 
@@ -49,6 +49,9 @@ class NewsController extends Controller
             $path = $request->file('image')->store('news', 'public');
             $news->image_path = $path;
         }
+
+        $news->created_by = session('admin_id');
+        $news->updated_by = session('admin_id');
 
         $news->save();
 
@@ -101,6 +104,8 @@ class NewsController extends Controller
                 $news->image_path = null;
             }
         }
+
+        $news->updated_by = session('admin_id');
 
         $news->save();
 

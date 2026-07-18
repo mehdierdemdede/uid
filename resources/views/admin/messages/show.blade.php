@@ -13,6 +13,9 @@
       <p><strong>Ad Soyad:</strong> {{ $message->name }}</p>
       <p><strong>E-posta:</strong> {{ $message->email }}</p>
       <p><strong>Tarih:</strong> {{ $message->created_at->format('d.m.Y H:i') }}</p>
+      @if($message->readBy)
+        <p><strong>Okuyan:</strong> {{ $message->readBy->name }}</p>
+      @endif
       <p><strong>Mesaj:</strong></p>
       <p class="whitespace-pre-line">{{ $message->note }}</p>
     </div>

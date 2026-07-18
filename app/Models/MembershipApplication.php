@@ -42,7 +42,13 @@ class MembershipApplication extends Model
         'admin_notes',
         'submitted_ip',
         'user_agent',
+        'reviewed_by',
     ];
+
+    public function reviewedBy(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Admin::class, 'reviewed_by');
+    }
 
     protected function casts(): array
     {

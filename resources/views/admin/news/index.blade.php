@@ -27,6 +27,7 @@
             <th class="px-3 py-2 text-left">Başlık</th>
             <th class="px-3 py-2 text-left">Durum</th>
             <th class="px-3 py-2 text-left">Tarih</th>
+            <th class="px-3 py-2 text-left">Ekleyen</th>
             <th class="px-3 py-2">İşlemler</th>
         </tr>
       </thead>
@@ -49,6 +50,7 @@
                 @endif
             </td>
             <td class="px-3 py-2">{{ $item->published_at ? $item->published_at->format('d.m.Y H:i') : '-' }}</td>
+            <td class="px-3 py-2">{{ $item->createdBy->name ?? '-' }}</td>
             <td class="px-3 py-2 text-center flex items-center justify-center gap-2">
                 <a class="text-uid-blue underline" href="{{ route('admin.news.edit', $item) }}">Düzenle</a>
                 <form action="{{ route('admin.news.destroy', $item) }}" method="POST" onsubmit="return confirm('Silmek istediğinize emin misiniz?');">
@@ -59,7 +61,7 @@
             </td>
         </tr>
       @empty
-        <tr><td class="px-3 py-4 text-center text-slate-500" colspan="5">Kayıt bulunamadı.</td></tr>
+        <tr><td class="px-3 py-4 text-center text-slate-500" colspan="6">Kayıt bulunamadı.</td></tr>
       @endforelse
       </tbody>
     </table>

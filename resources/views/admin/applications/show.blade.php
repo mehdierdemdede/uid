@@ -13,6 +13,9 @@
       <p><strong>Ad Soyad:</strong> {{ $application->first_name }} {{ $application->last_name }}</p>
       <p><strong>E-posta:</strong> {{ $application->email }}</p>
       <p><strong>Telefon:</strong> {{ $application->phone }}</p>
+      @if($application->reviewedBy)
+        <p><strong>Son inceleyen:</strong> {{ $application->reviewedBy->name }}</p>
+      @endif
     </div>
     <form method="POST" action="{{ route('admin.applications.update',$application) }}" class="rounded bg-white p-4 shadow space-y-3">@csrf @method('PATCH')
       <select name="status" class="w-full rounded border-slate-300">@foreach($statuses as $status)<option value="{{ $status->value }}" @selected($application->status===$status->value)>{{ $status->value }}</option>@endforeach</select>

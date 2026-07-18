@@ -50,6 +50,8 @@ class MembershipApplicationAdminController extends Controller
 
     public function show(MembershipApplication $membershipApplication): View
     {
+        $membershipApplication->load('reviewedBy');
+
         return view('admin.applications.show', [
             'application' => $membershipApplication,
             'statuses' => ApplicationStatus::cases(),
@@ -63,7 +65,10 @@ class MembershipApplicationAdminController extends Controller
             'admin_notes' => ['nullable', 'string'],
         ]);
 
-        $membershipApplication->update($validated);
+        $membershipApplication->update([
+            ...$validated,
+            'reviewed_by' => session('admin_id'),
+        ]);
 
         return back()->with('status', 'Basvuru guncellendi.');
     }

@@ -20,8 +20,10 @@ class ContactMessageAdminController extends Controller
     public function show(ContactMessage $message): View
     {
         if (! $message->is_read) {
-            $message->update(['is_read' => true]);
+            $message->update(['is_read' => true, 'read_by' => session('admin_id')]);
         }
+
+        $message->load('readBy');
 
         return view('admin.messages.show', [
             'message' => $message,

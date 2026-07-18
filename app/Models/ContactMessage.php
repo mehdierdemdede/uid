@@ -13,6 +13,7 @@ class ContactMessage extends Model
         'submitted_ip',
         'user_agent',
         'is_read',
+        'read_by',
     ];
 
     protected function casts(): array
@@ -20,5 +21,10 @@ class ContactMessage extends Model
         return [
             'is_read' => 'boolean',
         ];
+    }
+
+    public function readBy(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Admin::class, 'read_by');
     }
 }

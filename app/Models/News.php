@@ -17,7 +17,19 @@ class News extends Model
         'image_path',
         'is_published',
         'published_at',
+        'created_by',
+        'updated_by',
     ];
+
+    public function createdBy(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Admin::class, 'created_by');
+    }
+
+    public function updatedBy(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Admin::class, 'updated_by');
+    }
 
     protected function casts(): array
     {
