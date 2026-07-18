@@ -11,7 +11,7 @@ return new class extends Migration
         $driver = Schema::getConnection()->getDriverName();
 
         if (in_array($driver, ['mysql', 'mariadb'], true)) {
-            DB::statement("ALTER TABLE membership_applications MODIFY email VARCHAR(255) NULL");
+            DB::statement("ALTER TABLE membership_applications MODIFY email VARCHAR(191) NULL");
         }
     }
 
@@ -20,7 +20,7 @@ return new class extends Migration
         $driver = Schema::getConnection()->getDriverName();
 
         if (in_array($driver, ['mysql', 'mariadb'], true)) {
-            DB::statement("ALTER TABLE membership_applications MODIFY email VARCHAR(255) NOT NULL");
+            DB::statement("ALTER TABLE membership_applications MODIFY email VARCHAR(191) NOT NULL");
         }
     }
 };
