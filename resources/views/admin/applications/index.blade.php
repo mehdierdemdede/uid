@@ -7,7 +7,13 @@
 </head>
 <body class="bg-slate-50 p-6">
   <div class="mx-auto max-w-7xl space-y-4">
-    <h1 class="text-2xl font-bold">Uyelik Basvurulari</h1>
+    <div class="flex items-center justify-between">
+        <h1 class="text-2xl font-bold">Uyelik Basvurulari</h1>
+        <div class="flex items-center gap-2">
+            <a href="{{ route('admin.messages.index') }}" class="rounded bg-slate-200 px-4 py-2 text-slate-800 hover:bg-slate-300">Mesajlar</a>
+            <a href="{{ route('admin.news.index') }}" class="rounded bg-slate-200 px-4 py-2 text-slate-800 hover:bg-slate-300">Haberler</a>
+        </div>
+    </div>
     <table class="min-w-full overflow-hidden rounded bg-white text-sm shadow">
       <thead class="bg-slate-100"><tr><th class="px-3 py-2">ID</th><th class="px-3 py-2">Ad Soyad</th><th class="px-3 py-2">E-posta</th><th class="px-3 py-2">Durum</th></tr></thead>
       <tbody>

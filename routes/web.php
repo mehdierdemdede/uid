@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\ContactMessageAdminController;
 use App\Http\Controllers\Admin\ExportMembershipApplicationsController;
 use App\Http\Controllers\Admin\MembershipApplicationAdminController;
 use App\Http\Controllers\MembershipApplicationController;
@@ -13,7 +14,9 @@ Route::view('/hakkimizda', 'site.pages.about')->name('about');
 Route::get('/haberler', [\App\Http\Controllers\NewsController::class, 'index'])->name('news.index');
 Route::get('/haberler/{news}', [\App\Http\Controllers\NewsController::class, 'show'])->name('news.show');
 Route::get('/iletisim', [ContactController::class, 'create'])->name('contact');
-Route::post('/iletisim', [ContactController::class, 'store'])->name('contact.store');
+Route::post('/iletisim', [ContactController::class, 'store'])
+    ->middleware(['throttle:20,1', 'honeypot'])
+    ->name('contact.store');
 
 Route::get('/uyelik', [MembershipApplicationController::class, 'create'])->name('membership.create');
 Route::post('/uyelik', [MembershipApplicationController::class, 'store'])
@@ -37,6 +40,9 @@ Route::prefix('admin')->group(function (): void {
         Route::get('/basvurular/export/csv', ExportMembershipApplicationsController::class)->name('admin.applications.export.csv');
         Route::get('/basvurular/{membershipApplication}', [MembershipApplicationAdminController::class, 'show'])->name('admin.applications.show');
         Route::patch('/basvurular/{membershipApplication}', [MembershipApplicationAdminController::class, 'update'])->name('admin.applications.update');
+
+        Route::get('/mesajlar', [ContactMessageAdminController::class, 'index'])->name('admin.messages.index');
+        Route::get('/mesajlar/{message}', [ContactMessageAdminController::class, 'show'])->name('admin.messages.show');
     });
 });
 

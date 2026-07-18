@@ -16,11 +16,12 @@
             <div>
                 <h3 class="mb-3 text-lg font-bold text-slate-900">İletişim</h3>
                 <address class="not-italic text-sm leading-relaxed text-slate-800 font-medium">
-                    Union of International Democrats<br>
-                    Concordiaplatz 1<br>
-                    51143 Köln (Almanya)<br>
-                    02203 101 98 0<br>
-                    <a href="mailto:info@u-id.org" class="inline-block hover:text-uid-navy">info@u-id.org</a>
+                    UID Bosna Hersek<br>
+                    Zmaja od Bosne 12<br>
+                    71000 Sarajevo (Bosna Hersek)<br>
+                    +387 33 000 000<br>
+                    <a href="mailto:bosna@u-id.org" class="inline-block hover:text-uid-navy">bosna@u-id.org</a><br>
+                    <span class="mt-1 inline-block text-xs text-slate-500">Not: Bu iletişim bilgileri geçici (dummy) olarak eklenmiştir, yakında güncellenecektir.</span>
                 </address>
             </div>
             <div>

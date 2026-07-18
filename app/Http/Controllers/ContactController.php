@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ContactMessage;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -19,8 +20,13 @@ class ContactController extends Controller
             'note'  => 'required|string|max:2000',
         ]);
 
-        // Mail gönderimi buraya eklenebilir
-        // Mail::to('info@u-id.org')->send(new ContactMail($validated));
+        ContactMessage::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'note' => $validated['note'],
+            'submitted_ip' => $request->ip(),
+            'user_agent' => (string) $request->userAgent(),
+        ]);
 
         return redirect()->route('contact')->with('success', 'Mesajınız başarıyla gönderildi. En kısa sürede size döneceğiz.');
     }

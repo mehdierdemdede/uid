@@ -3,10 +3,29 @@
 @section('title', 'Üyelik Başvurusu — UID Bosna Hersek')
 
 @section('content')
-<div class="bg-slate-50 py-16 md:py-24">
-    <div class="mx-auto max-w-3xl px-4 md:px-8">
-        <h1 class="mb-2 text-3xl font-bold text-uid-navy md:text-4xl">Üyelik Başvurusu</h1>
-        <p class="mb-10 text-base text-slate-500">Lütfen aşağıdaki formu eksiksiz doldurunuz. <span class="text-red-500">*</span> ile işaretli alanlar zorunludur.</p>
+<section class="relative h-[240px] w-full overflow-hidden bg-uid-navy md:h-[360px]">
+    <img src="{{ asset('images/uye_ol.jpg') }}" alt="Üye Ol" class="h-full w-full object-cover object-center">
+    <div class="absolute inset-0 bg-gradient-to-r from-uid-navy/85 via-uid-navy/55 to-uid-navy/20"></div>
+    <div class="absolute inset-0 flex items-center">
+        <div class="mx-auto w-full max-w-7xl px-4 md:px-8">
+            <div class="flex items-center gap-4 border-l-4 border-white pl-4 md:pl-6">
+                <h2 class="text-4xl font-bold text-white md:text-5xl">Üye ol</h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="bg-[#efefef] py-10 md:py-14">
+    <div class="mx-auto max-w-5xl px-4 md:px-8">
+        <div class="mb-8 flex justify-center md:mb-10">
+            <img src="{{ asset('images/uid-logo.png') }}" alt="UID Bosna Hersek" class="h-24 w-auto md:h-40">
+        </div>
+
+        <div class="rounded-t-lg border border-slate-200 bg-white px-6 py-10 text-center md:px-10 md:py-12">
+            <h1 class="text-4xl font-bold tracking-tight text-slate-800 md:text-5xl">Üyelik Kayıt Formu</h1>
+            <p class="mt-3 text-lg text-slate-600 md:text-2xl">Membership Registration Form</p>
+            <p class="mt-4 text-sm text-slate-500">Lütfen aşağıdaki formu eksiksiz doldurunuz. <span class="text-red-500">*</span> ile işaretli alanlar zorunludur.</p>
+        </div>
 
         @if($errors->any())
             <div class="mb-6 rounded-lg bg-red-50 border border-red-200 p-4 text-red-800">
@@ -18,8 +37,9 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('membership.store') }}" class="space-y-8 rounded-2xl bg-white p-6 shadow-lg md:p-10">
+        <form method="POST" action="{{ route('membership.store') }}" class="space-y-8 border border-t-0 border-slate-200 bg-white p-6 shadow-sm md:p-10">
             @csrf
+            @honeypot
 
             {{-- İsim Soyisim --}}
             <div>

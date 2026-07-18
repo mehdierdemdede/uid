@@ -3,6 +3,18 @@
 @section('title', 'Hakkımızda — UID Bosna Hersek')
 
 @section('content')
+    <section class="relative h-[240px] w-full overflow-hidden bg-uid-navy md:h-[360px]">
+        <img src="{{ asset('images/hakkimizda.jpg') }}" alt="Hakkımızda" class="h-full w-full object-cover object-center">
+        <div class="absolute inset-0 bg-gradient-to-r from-uid-navy/85 via-uid-navy/55 to-uid-navy/20"></div>
+        <div class="absolute inset-0 flex items-center">
+            <div class="mx-auto w-full max-w-7xl px-4 md:px-8">
+                <div class="flex items-center gap-4 border-l-4 border-white pl-4 md:pl-6">
+                    <h1 class="text-4xl font-bold text-white md:text-5xl">Hakkımızda</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <div class="bg-white py-16 md:py-24">
         <div class="mx-auto max-w-4xl px-4 md:px-8">
             <h1 class="mb-10 text-3xl font-bold text-uid-navy md:text-5xl">Hakkımızda</h1>

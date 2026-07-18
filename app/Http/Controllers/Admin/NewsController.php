@@ -33,7 +33,13 @@ class NewsController extends Controller
 
         $news = new News();
         $news->title = $validated['title'];
-        $news->slug = Str::slug($validated['title']);
+
+        $slug = Str::slug($validated['title']);
+        if (News::where('slug', $slug)->exists()) {
+            $slug .= '-'.uniqid();
+        }
+        $news->slug = $slug;
+
         $news->summary = $validated['summary'] ?? null;
         $news->content = $validated['content'];
         $news->is_published = $request->has('is_published');

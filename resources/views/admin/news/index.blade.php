@@ -11,6 +11,7 @@
         <h1 class="text-2xl font-bold">Haber Yönetimi</h1>
         <div class="flex items-center gap-2">
             <a href="{{ route('admin.applications.index') }}" class="rounded bg-slate-200 px-4 py-2 text-slate-800 hover:bg-slate-300">Başvurular</a>
+            <a href="{{ route('admin.messages.index') }}" class="rounded bg-slate-200 px-4 py-2 text-slate-800 hover:bg-slate-300">Mesajlar</a>
             <a href="{{ route('admin.news.create') }}" class="rounded bg-uid-blue px-4 py-2 text-white hover:bg-uid-blue/90">Yeni Haber Ekle</a>
         </div>
     </div>
