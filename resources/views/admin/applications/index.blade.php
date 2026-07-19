@@ -12,6 +12,7 @@
         <div class="flex items-center gap-2">
             <a href="{{ route('admin.messages.index') }}" class="rounded bg-slate-200 px-4 py-2 text-slate-800 hover:bg-slate-300">Mesajlar</a>
             <a href="{{ route('admin.news.index') }}" class="rounded bg-slate-200 px-4 py-2 text-slate-800 hover:bg-slate-300">Haberler</a>
+            <a href="{{ route('admin.benefits.index') }}" class="rounded bg-slate-200 px-4 py-2 text-slate-800 hover:bg-slate-300">Faydalar</a>
         </div>
     </div>
     <table class="min-w-full overflow-hidden rounded bg-white text-sm shadow">

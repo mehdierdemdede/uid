@@ -79,25 +79,37 @@
     <section class="bg-white py-14 md:py-20">
         <div class="mx-auto grid max-w-6xl items-center gap-10 px-4 md:grid-cols-2 md:px-8">
             <div class="space-y-5 text-center md:text-left">
-                <h2 class="text-4xl font-bold text-uid-navy md:text-5xl">{{ __('İş İnsanları Üyelik Fırsatları') }}</h2>
-                <p class="text-lg text-slate-700">{{ __('Tic üyelik ile tüm çalışanlarınıza erişim imkanı.') }}</p>
+                <h2 class="text-4xl font-bold text-uid-navy md:text-5xl">{{ __('Üyelik Faydaları') }}</h2>
+                <p class="text-lg text-slate-700">{{ __('UID üyelerine özel indirim ve avantajlar.') }}</p>
                 <ul class="space-y-3 text-lg text-slate-700">
-                    <li class="flex items-start justify-center gap-3 md:justify-start">
-                        <span class="mt-1 inline-block h-6 w-6 rounded-full bg-uid-navy text-center text-sm leading-6 text-white">✓</span>
-                        {{ __('Çalışanlarınıza özel; seyahat, moda, teknoloji, ev ve yaşamda indirimler.') }}
-                    </li>
-                    <li class="flex items-start justify-center gap-3 md:justify-start">
-                        <span class="mt-1 inline-block h-6 w-6 rounded-full bg-uid-navy text-center text-sm leading-6 text-white">✓</span>
-                        {{ __('Tek üyelik ile tüm çalışanlara erişim.') }}
-                    </li>
-                    <li class="flex items-start justify-center gap-3 md:justify-start">
-                        <span class="mt-1 inline-block h-6 w-6 rounded-full bg-uid-navy text-center text-sm leading-6 text-white">✓</span>
-                        {{ __('Platformumuza kolay erişim ve güçlü network.') }}
-                    </li>
+                    @forelse($benefits as $benefit)
+                        <li class="flex items-start justify-center gap-3 md:justify-start">
+                            <span class="mt-1 inline-block h-6 w-6 rounded-full bg-uid-navy text-center text-sm leading-6 text-white">✓</span>
+                            <span>{{ $benefit->title }}@if($benefit->discount_text) — {{ $benefit->discount_text }}@endif</span>
+                        </li>
+                    @empty
+                        <li class="flex items-start justify-center gap-3 md:justify-start">
+                            <span class="mt-1 inline-block h-6 w-6 rounded-full bg-uid-navy text-center text-sm leading-6 text-white">✓</span>
+                            {{ __('Çalışanlarınıza özel; seyahat, moda, teknoloji, ev ve yaşamda indirimler.') }}
+                        </li>
+                        <li class="flex items-start justify-center gap-3 md:justify-start">
+                            <span class="mt-1 inline-block h-6 w-6 rounded-full bg-uid-navy text-center text-sm leading-6 text-white">✓</span>
+                            {{ __('Tek üyelik ile tüm çalışanlara erişim.') }}
+                        </li>
+                        <li class="flex items-start justify-center gap-3 md:justify-start">
+                            <span class="mt-1 inline-block h-6 w-6 rounded-full bg-uid-navy text-center text-sm leading-6 text-white">✓</span>
+                            {{ __('Platformumuza kolay erişim ve güçlü network.') }}
+                        </li>
+                    @endforelse
                 </ul>
-                <a href="{{ t_route('membership.create') }}" class="inline-flex items-center justify-center bg-uid-navy px-7 py-3 text-sm font-semibold text-white transition hover:bg-uid-navy/90">
-                    {{ __('İş İnsanları Üyelik Fırsatları') }}
-                </a>
+                <div class="flex flex-wrap justify-center gap-3 md:justify-start">
+                    <a href="{{ t_route('membership.create') }}" class="inline-flex items-center justify-center bg-uid-navy px-7 py-3 text-sm font-semibold text-white transition hover:bg-uid-navy/90">
+                        {{ __('Üye ol') }}
+                    </a>
+                    <a href="{{ t_route('membership.benefits') }}" class="inline-flex items-center justify-center border border-uid-navy px-7 py-3 text-sm font-semibold text-uid-navy transition hover:bg-uid-navy/5">
+                        {{ __('Tüm Faydalar') }}
+                    </a>
+                </div>
             </div>
             <div class="mx-auto w-full max-w-[460px] border border-slate-200 bg-white p-2 shadow-lg">
                 <img src="{{ asset('images/bg_uid.jpg') }}" alt="{{ __('UID Üyelik Fırsatları') }}" class="h-auto w-full object-cover">

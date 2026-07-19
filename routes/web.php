@@ -4,13 +4,15 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\ContactMessageAdminController;
 use App\Http\Controllers\Admin\ExportMembershipApplicationsController;
 use App\Http\Controllers\Admin\MembershipApplicationAdminController;
+use App\Http\Controllers\Admin\MembershipBenefitController as AdminMembershipBenefitController;
 use App\Http\Controllers\MembershipApplicationController;
+use App\Http\Controllers\MembershipBenefitController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 $registerPublicRoutes = function (): void {
-    Route::view('/', 'site.home')->name('home');
+    Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::view('/hakkimizda', 'site.pages.about')->name('about');
     Route::get('/haberler', [\App\Http\Controllers\NewsController::class, 'index'])->name('news.index');
     Route::get('/haberler/{news}', [\App\Http\Controllers\NewsController::class, 'show'])->name('news.show');
@@ -24,6 +26,7 @@ $registerPublicRoutes = function (): void {
         ->middleware(['throttle:20,1', 'honeypot'])
         ->name('membership.store');
     Route::get('/uyelik/basarili', [MembershipApplicationController::class, 'success'])->name('membership.success');
+    Route::get('/uyelik/faydalar', [MembershipBenefitController::class, 'index'])->name('membership.benefits');
 
     Route::view('/uyelik/kvkk', 'legal.kvkk')->name('legal.kvkk');
     Route::view('/uyelik/tuzuk', 'legal.tuzuk')->name('legal.tuzuk');
@@ -43,6 +46,7 @@ Route::prefix('admin')->group(function (): void {
         Route::post('/logout', [AuthController::class, 'destroy'])->name('admin.logout');
         
         Route::resource('news', \App\Http\Controllers\Admin\NewsController::class)->names('admin.news');
+        Route::resource('faydalar', AdminMembershipBenefitController::class)->names('admin.benefits')->except(['show']);
 
         Route::get('/basvurular', [MembershipApplicationAdminController::class, 'index'])->name('admin.applications.index');
         Route::get('/basvurular/export/csv', ExportMembershipApplicationsController::class)->name('admin.applications.export.csv');

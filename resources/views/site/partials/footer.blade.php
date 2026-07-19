@@ -9,6 +9,7 @@
                 <ul class="space-y-2 text-sm text-slate-800 font-medium">
                     <li><a href="{{ t_route('about') }}" class="hover:text-uid-navy">{{ __('Hakkımızda') }}</a></li>
                     <li><a href="{{ t_route('membership.create') }}" class="hover:text-uid-navy">{{ __('Üye ol') }}</a></li>
+                    <li><a href="{{ t_route('membership.benefits') }}" class="hover:text-uid-navy">{{ __('Üyelik Faydaları') }}</a></li>
                     <li><a href="{{ t_route('news.index') }}" class="hover:text-uid-navy">{{ __('Haberler') }}</a></li>
                     <li><a href="{{ t_route('contact') }}" class="hover:text-uid-navy">{{ __('İletişim') }}</a></li>
                 </ul>
