@@ -17,7 +17,7 @@
                 <h3 class="mb-3 text-lg font-bold text-slate-900">{{ __('İletişim') }}</h3>
                 <address class="not-italic text-sm leading-relaxed text-slate-800 font-medium">
                     UID Bosna Hersek<br>
-                    <a href="mailto:bosna@u-id.org" class="inline-block hover:text-uid-navy">bosna@u-id.org</a>
+                    <a href="mailto:info@uidbih.com" class="inline-block hover:text-uid-navy">info@uidbih.com</a>
                 </address>
             </div>
             <div>
