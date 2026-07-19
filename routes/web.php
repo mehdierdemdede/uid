@@ -9,23 +9,31 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'site.home')->name('home');
-Route::view('/hakkimizda', 'site.pages.about')->name('about');
-Route::get('/haberler', [\App\Http\Controllers\NewsController::class, 'index'])->name('news.index');
-Route::get('/haberler/{news}', [\App\Http\Controllers\NewsController::class, 'show'])->name('news.show');
-Route::get('/iletisim', [ContactController::class, 'create'])->name('contact');
-Route::post('/iletisim', [ContactController::class, 'store'])
-    ->middleware(['throttle:20,1', 'honeypot'])
-    ->name('contact.store');
+$registerPublicRoutes = function (): void {
+    Route::view('/', 'site.home')->name('home');
+    Route::view('/hakkimizda', 'site.pages.about')->name('about');
+    Route::get('/haberler', [\App\Http\Controllers\NewsController::class, 'index'])->name('news.index');
+    Route::get('/haberler/{news}', [\App\Http\Controllers\NewsController::class, 'show'])->name('news.show');
+    Route::get('/iletisim', [ContactController::class, 'create'])->name('contact');
+    Route::post('/iletisim', [ContactController::class, 'store'])
+        ->middleware(['throttle:20,1', 'honeypot'])
+        ->name('contact.store');
 
-Route::get('/uyelik', [MembershipApplicationController::class, 'create'])->name('membership.create');
-Route::post('/uyelik', [MembershipApplicationController::class, 'store'])
-    ->middleware(['throttle:20,1', 'honeypot'])
-    ->name('membership.store');
-Route::get('/uyelik/basarili', [MembershipApplicationController::class, 'success'])->name('membership.success');
+    Route::get('/uyelik', [MembershipApplicationController::class, 'create'])->name('membership.create');
+    Route::post('/uyelik', [MembershipApplicationController::class, 'store'])
+        ->middleware(['throttle:20,1', 'honeypot'])
+        ->name('membership.store');
+    Route::get('/uyelik/basarili', [MembershipApplicationController::class, 'success'])->name('membership.success');
 
-Route::view('/uyelik/kvkk', 'legal.kvkk')->name('legal.kvkk');
-Route::view('/uyelik/tuzuk', 'legal.tuzuk')->name('legal.tuzuk');
+    Route::view('/uyelik/kvkk', 'legal.kvkk')->name('legal.kvkk');
+    Route::view('/uyelik/tuzuk', 'legal.tuzuk')->name('legal.tuzuk');
+};
+
+// Default (unprefixed) locale is Turkish — existing URLs are untouched.
+Route::middleware(['setlocale:tr'])->group($registerPublicRoutes);
+
+// Bosnian mirror of the same routes under /bs, e.g. /bs/haberler.
+Route::prefix('bs')->name('bs.')->middleware(['setlocale:bs'])->group($registerPublicRoutes);
 
 Route::prefix('admin')->group(function (): void {
     Route::get('/login', [AuthController::class, 'create'])->name('admin.login');

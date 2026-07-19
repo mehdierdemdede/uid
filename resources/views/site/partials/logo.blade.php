@@ -4,7 +4,7 @@
     $logoPath = $onDark ? 'images/uid-logo1.png' : 'images/uid-logo.png';
 @endphp
 
-<a href="{{ route('home') }}" class="inline-flex items-center gap-2 {{ $class }}">
+<a href="{{ t_route('home') }}" class="inline-flex items-center gap-2 {{ $class }}">
     <img
         src="{{ asset($logoPath) }}"
         alt="UID"

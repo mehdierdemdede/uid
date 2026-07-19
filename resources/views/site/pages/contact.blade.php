@@ -1,6 +1,6 @@
 @extends('layouts.site')
 
-@section('title', 'İletişim — UID Bosna Hersek')
+@section('title', __('İletişim').' — UID Bosna Hersek')
 
 @section('content')
 <section class="relative h-[260px] w-full overflow-hidden bg-uid-navy md:h-[420px]">
@@ -11,7 +11,7 @@
     <div class="absolute inset-0 flex items-end">
         <div class="mx-auto w-full max-w-7xl px-4 md:px-8">
             <div class="mb-6 flex items-center gap-4 border-l-4 border-white pl-4 md:mb-10 md:pl-6">
-                <h1 class="text-3xl font-bold tracking-tight text-white md:text-5xl">İletişim</h1>
+                <h1 class="text-3xl font-bold tracking-tight text-white md:text-5xl">{{ __('İletişim') }}</h1>
             </div>
         </div>
     </div>
@@ -35,13 +35,13 @@
             </div>
         @endif
 
-        <form action="{{ route('contact.store') }}" method="POST" class="space-y-5">
+        <form action="{{ t_route('contact.store') }}" method="POST" class="space-y-5">
             @csrf
             @honeypot
 
             <div>
-                <label for="name" class="mb-1.5 block text-sm font-semibold text-slate-700">Ad Soyad</label>
-                <input type="text" name="name" id="name" value="{{ old('name') }}" placeholder="Ad Soyad" required
+                <label for="name" class="mb-1.5 block text-sm font-semibold text-slate-700">{{ __('Ad Soyad') }}</label>
+                <input type="text" name="name" id="name" value="{{ old('name') }}" placeholder="{{ __('Ad Soyad') }}" required
                        class="w-full border border-slate-300 bg-white px-3 py-2.5 text-slate-900 placeholder:text-slate-400 focus:border-uid-blue focus:ring-0">
             </div>
 
@@ -52,13 +52,13 @@
             </div>
 
             <div>
-                <label for="note" class="mb-1.5 block text-sm font-semibold text-slate-700">Not</label>
-                <textarea name="note" id="note" rows="5" placeholder="Not" required
+                <label for="note" class="mb-1.5 block text-sm font-semibold text-slate-700">{{ __('Not') }}</label>
+                <textarea name="note" id="note" rows="5" placeholder="{{ __('Not') }}" required
                           class="w-full border border-slate-300 bg-white px-3 py-2.5 text-slate-900 placeholder:text-slate-400 focus:border-uid-blue focus:ring-0">{{ old('note') }}</textarea>
             </div>
 
             <button type="submit" class="w-full bg-uid-navy py-3 text-sm font-semibold tracking-wide text-white transition hover:bg-uid-navy/90">
-                Gönder
+                {{ __('Gönder') }}
             </button>
         </form>
     </div>

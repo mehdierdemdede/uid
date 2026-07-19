@@ -5,23 +5,23 @@
                 @include('site.partials.logo', ['onDark' => false, 'class' => 'items-start'])
             </div>
             <div>
-                <h3 class="mb-3 text-lg font-bold text-slate-900">Önemli</h3>
+                <h3 class="mb-3 text-lg font-bold text-slate-900">{{ __('Önemli') }}</h3>
                 <ul class="space-y-2 text-sm text-slate-800 font-medium">
-                    <li><a href="{{ route('about') }}" class="hover:text-uid-navy">Hakkımızda</a></li>
-                    <li><a href="{{ route('membership.create') }}" class="hover:text-uid-navy">Üye ol</a></li>
-                    <li><a href="{{ route('news.index') }}" class="hover:text-uid-navy">Haberler</a></li>
-                    <li><a href="{{ route('contact') }}" class="hover:text-uid-navy">İletişim</a></li>
+                    <li><a href="{{ t_route('about') }}" class="hover:text-uid-navy">{{ __('Hakkımızda') }}</a></li>
+                    <li><a href="{{ t_route('membership.create') }}" class="hover:text-uid-navy">{{ __('Üye ol') }}</a></li>
+                    <li><a href="{{ t_route('news.index') }}" class="hover:text-uid-navy">{{ __('Haberler') }}</a></li>
+                    <li><a href="{{ t_route('contact') }}" class="hover:text-uid-navy">{{ __('İletişim') }}</a></li>
                 </ul>
             </div>
             <div>
-                <h3 class="mb-3 text-lg font-bold text-slate-900">İletişim</h3>
+                <h3 class="mb-3 text-lg font-bold text-slate-900">{{ __('İletişim') }}</h3>
                 <address class="not-italic text-sm leading-relaxed text-slate-800 font-medium">
                     UID Bosna Hersek<br>
                     <a href="mailto:bosna@u-id.org" class="inline-block hover:text-uid-navy">bosna@u-id.org</a>
                 </address>
             </div>
             <div>
-                <h3 class="mb-3 text-lg font-bold text-slate-900">Bizi Takip Edin</h3>
+                <h3 class="mb-3 text-lg font-bold text-slate-900">{{ __('Bizi Takip Edin') }}</h3>
                 <div class="flex items-center gap-4 text-uid-navy">
                     <a href="https://www.instagram.com/uidbih/" target="_blank" rel="noopener noreferrer" class="hover:text-uid-blue transition" aria-label="Instagram">
                         <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8A3.6 3.6 0 0 0 20 16.4V7.6A3.6 3.6 0 0 0 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
@@ -37,9 +37,9 @@
             <div class="flex flex-col items-center justify-between gap-4 text-xs text-slate-500 sm:flex-row">
                 <p>© {{ date('Y') }} Union of International Democrats</p>
                 <div class="flex flex-wrap justify-center gap-4">
-                    <a href="#" class="hover:text-uid-navy">Yasal bildirim</a>
-                    <a href="{{ route('legal.kvkk') }}" class="hover:text-uid-navy">Veri koruması</a>
-                    <a href="#" class="hover:text-uid-navy">Çerezler</a>
+                    <a href="#" class="hover:text-uid-navy">{{ __('Yasal bildirim') }}</a>
+                    <a href="{{ t_route('legal.kvkk') }}" class="hover:text-uid-navy">{{ __('Veri koruması') }}</a>
+                    <a href="#" class="hover:text-uid-navy">{{ __('Çerezler') }}</a>
                 </div>
             </div>
         </div>

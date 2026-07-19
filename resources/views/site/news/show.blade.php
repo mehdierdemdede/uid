@@ -5,8 +5,8 @@
 @section('content')
 <div class="bg-white py-16 md:py-24">
     <div class="mx-auto max-w-4xl px-4 md:px-8">
-        <a href="{{ route('news.index') }}" class="mb-8 inline-flex items-center text-sm font-medium text-uid-blue hover:underline">
-            &larr; Haberlere Dön
+        <a href="{{ t_route('news.index') }}" class="mb-8 inline-flex items-center text-sm font-medium text-uid-blue hover:underline">
+            &larr; {{ __('Haberlere Dön') }}
         </a>
 
         @if($news->image_path)
@@ -19,7 +19,7 @@
         <div class="mb-10 flex items-center gap-4 text-sm font-medium text-slate-500 border-b border-slate-200 pb-6">
             <time datetime="{{ $news->published_at->toIso8601String() }}">{{ $news->published_at->format('d.m.Y H:i') }}</time>
             <span>&bull;</span>
-            <span>UID Yönetimi</span>
+            <span>{{ __('UID Yönetimi') }}</span>
         </div>
 
         <div class="space-y-6 text-lg leading-relaxed text-slate-700">

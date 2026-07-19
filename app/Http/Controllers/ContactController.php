@@ -28,6 +28,6 @@ class ContactController extends Controller
             'user_agent' => (string) $request->userAgent(),
         ]);
 
-        return redirect()->route('contact')->with('success', 'Mesajınız başarıyla gönderildi. En kısa sürede size döneceğiz.');
+        return redirect(t_route('contact'))->with('success', __('Mesajınız başarıyla gönderildi. En kısa sürede size döneceğiz.'));
     }
 }

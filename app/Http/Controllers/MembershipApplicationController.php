@@ -25,13 +25,13 @@ class MembershipApplicationController extends Controller
 
         if (! $result['success']) {
             return back()
-                ->withErrors(['captcha_token' => 'Güvenlik doğrulaması başarısız. Lütfen tekrar deneyin.'])
+                ->withErrors(['captcha_token' => __('Güvenlik doğrulaması başarısız. Lütfen tekrar deneyin.')])
                 ->withInput();
         }
 
         $membershipApplicationService->submit($request, $result['score']);
 
-        return redirect()->route('membership.success');
+        return redirect(t_route('membership.success'));
     }
 
     public function success()
