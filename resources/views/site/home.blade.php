@@ -85,7 +85,7 @@
                     @forelse($benefits as $benefit)
                         <li class="flex items-start justify-center gap-3 md:justify-start">
                             <span class="mt-1 inline-block h-6 w-6 rounded-full bg-uid-navy text-center text-sm leading-6 text-white">✓</span>
-                            <span>{{ $benefit->title }}@if($benefit->discount_text) — {{ $benefit->discount_text }}@endif</span>
+                            <span>{{ $benefit->localizedTitle() }}@if($benefit->localizedDiscountText()) — {{ $benefit->localizedDiscountText() }}@endif</span>
                         </li>
                     @empty
                         <li class="flex items-start justify-center gap-3 md:justify-start">

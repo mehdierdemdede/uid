@@ -24,15 +24,19 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|max:191',
+            'title_bs' => 'nullable|string|max:191',
             'summary' => 'nullable|string',
+            'summary_bs' => 'nullable|string',
             'content' => 'required|string',
+            'content_bs' => 'nullable|string',
             'image' => 'nullable|image|max:2048',
             'is_published' => 'boolean',
         ]);
 
         $news = new News();
         $news->title = $validated['title'];
+        $news->title_bs = $validated['title_bs'] ?? null;
 
         $slug = Str::slug($validated['title']);
         if (News::where('slug', $slug)->exists()) {
@@ -41,7 +45,9 @@ class NewsController extends Controller
         $news->slug = $slug;
 
         $news->summary = $validated['summary'] ?? null;
+        $news->summary_bs = $validated['summary_bs'] ?? null;
         $news->content = $validated['content'];
+        $news->content_bs = $validated['content_bs'] ?? null;
         $news->is_published = $request->has('is_published');
         $news->published_at = $news->is_published ? now() : null;
 
@@ -66,24 +72,30 @@ class NewsController extends Controller
     public function update(Request $request, News $news)
     {
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|max:191',
+            'title_bs' => 'nullable|string|max:191',
             'summary' => 'nullable|string',
+            'summary_bs' => 'nullable|string',
             'content' => 'required|string',
+            'content_bs' => 'nullable|string',
             'image' => 'nullable|image|max:2048',
             'is_published' => 'boolean',
         ]);
 
         $news->title = $validated['title'];
-        
+        $news->title_bs = $validated['title_bs'] ?? null;
+
         // Prevent duplicate slugs by appending unique ID if needed
         $slug = Str::slug($validated['title']);
         if ($slug !== $news->slug && News::where('slug', $slug)->exists()) {
             $slug .= '-' . uniqid();
         }
         $news->slug = $slug;
-        
+
         $news->summary = $validated['summary'] ?? null;
+        $news->summary_bs = $validated['summary_bs'] ?? null;
         $news->content = $validated['content'];
+        $news->content_bs = $validated['content_bs'] ?? null;
         $news->is_published = $request->has('is_published');
         
         if ($news->is_published && !$news->published_at) {

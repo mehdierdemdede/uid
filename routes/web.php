@@ -46,7 +46,10 @@ Route::prefix('admin')->group(function (): void {
         Route::post('/logout', [AuthController::class, 'destroy'])->name('admin.logout');
         
         Route::resource('news', \App\Http\Controllers\Admin\NewsController::class)->names('admin.news');
-        Route::resource('faydalar', AdminMembershipBenefitController::class)->names('admin.benefits')->except(['show']);
+        Route::resource('faydalar', AdminMembershipBenefitController::class)
+            ->names('admin.benefits')
+            ->parameters(['faydalar' => 'benefit'])
+            ->except(['show']);
 
         Route::get('/basvurular', [MembershipApplicationAdminController::class, 'index'])->name('admin.applications.index');
         Route::get('/basvurular/export/csv', ExportMembershipApplicationsController::class)->name('admin.applications.export.csv');

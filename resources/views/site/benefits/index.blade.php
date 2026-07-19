@@ -25,14 +25,14 @@
             @forelse($benefits as $benefit)
                 <div class="flex flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
                     @if($benefit->logo_path)
-                        <img src="/storage/{{ $benefit->logo_path }}" alt="{{ $benefit->title }}" class="mb-4 h-14 w-auto object-contain">
+                        <img src="/storage/{{ $benefit->logo_path }}" alt="{{ $benefit->localizedTitle() }}" class="mb-4 h-14 w-auto object-contain">
                     @endif
-                    <h2 class="mb-2 text-xl font-bold text-uid-navy">{{ $benefit->title }}</h2>
-                    @if($benefit->discount_text)
-                        <span class="mb-3 inline-block w-fit rounded-full bg-uid-blue/10 px-3 py-1 text-sm font-semibold text-uid-blue">{{ $benefit->discount_text }}</span>
+                    <h2 class="mb-2 text-xl font-bold text-uid-navy">{{ $benefit->localizedTitle() }}</h2>
+                    @if($benefit->localizedDiscountText())
+                        <span class="mb-3 inline-block w-fit rounded-full bg-uid-blue/10 px-3 py-1 text-sm font-semibold text-uid-blue">{{ $benefit->localizedDiscountText() }}</span>
                     @endif
-                    @if($benefit->description)
-                        <p class="text-sm leading-relaxed text-slate-600">{{ $benefit->description }}</p>
+                    @if($benefit->localizedDescription())
+                        <p class="text-sm leading-relaxed text-slate-600">{{ $benefit->localizedDescription() }}</p>
                     @endif
                 </div>
             @empty

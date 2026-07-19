@@ -26,19 +26,41 @@
         @csrf
         @method('PUT')
         
-        <div>
-            <label class="mb-1 block text-sm font-medium">Başlık</label>
-            <input type="text" name="title" value="{{ old('title', $news->title) }}" required class="w-full rounded border-slate-300 p-2 border">
+        <div class="rounded border border-slate-200 p-4">
+            <h2 class="mb-3 text-sm font-bold uppercase text-slate-500">Türkçe (zorunlu)</h2>
+            <div class="space-y-4">
+                <div>
+                    <label class="mb-1 block text-sm font-medium">Başlık</label>
+                    <input type="text" name="title" value="{{ old('title', $news->title) }}" required class="w-full rounded border-slate-300 p-2 border">
+                </div>
+                <div>
+                    <label class="mb-1 block text-sm font-medium">Kısa Özet (Opsiyonel)</label>
+                    <textarea name="summary" rows="3" class="w-full rounded border-slate-300 p-2 border">{{ old('summary', $news->summary) }}</textarea>
+                </div>
+                <div>
+                    <label class="mb-1 block text-sm font-medium">İçerik</label>
+                    <textarea name="content" rows="10" required class="w-full rounded border-slate-300 p-2 border">{{ old('content', $news->content) }}</textarea>
+                </div>
+            </div>
         </div>
 
-        <div>
-            <label class="mb-1 block text-sm font-medium">Kısa Özet (Opsiyonel)</label>
-            <textarea name="summary" rows="3" class="w-full rounded border-slate-300 p-2 border">{{ old('summary', $news->summary) }}</textarea>
-        </div>
-
-        <div>
-            <label class="mb-1 block text-sm font-medium">İçerik</label>
-            <textarea name="content" rows="10" required class="w-full rounded border-slate-300 p-2 border">{{ old('content', $news->content) }}</textarea>
+        <div class="rounded border border-slate-200 p-4">
+            <h2 class="mb-3 text-sm font-bold uppercase text-slate-500">Bosanski (opsiyonel)</h2>
+            <p class="mb-3 text-xs text-slate-500">Boş bırakılırsa Boşnakça sayfada Türkçe metin gösterilir.</p>
+            <div class="space-y-4">
+                <div>
+                    <label class="mb-1 block text-sm font-medium">Naslov</label>
+                    <input type="text" name="title_bs" value="{{ old('title_bs', $news->title_bs) }}" class="w-full rounded border-slate-300 p-2 border">
+                </div>
+                <div>
+                    <label class="mb-1 block text-sm font-medium">Kratki sažetak (opciono)</label>
+                    <textarea name="summary_bs" rows="3" class="w-full rounded border-slate-300 p-2 border">{{ old('summary_bs', $news->summary_bs) }}</textarea>
+                </div>
+                <div>
+                    <label class="mb-1 block text-sm font-medium">Sadržaj</label>
+                    <textarea name="content_bs" rows="10" class="w-full rounded border-slate-300 p-2 border">{{ old('content_bs', $news->content_bs) }}</textarea>
+                </div>
+            </div>
         </div>
 
         <div>

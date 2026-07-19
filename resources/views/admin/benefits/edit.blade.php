@@ -26,19 +26,41 @@
         @csrf
         @method('PUT')
 
-        <div>
-            <label class="mb-1 block text-sm font-medium">Başlık</label>
-            <input type="text" name="title" value="{{ old('title', $benefit->title) }}" required class="w-full rounded border-slate-300 p-2 border">
+        <div class="rounded border border-slate-200 p-4">
+            <h2 class="mb-3 text-sm font-bold uppercase text-slate-500">Türkçe (zorunlu)</h2>
+            <div class="space-y-4">
+                <div>
+                    <label class="mb-1 block text-sm font-medium">Başlık</label>
+                    <input type="text" name="title" value="{{ old('title', $benefit->title) }}" required class="w-full rounded border-slate-300 p-2 border">
+                </div>
+                <div>
+                    <label class="mb-1 block text-sm font-medium">İndirim / Kısa Etiket (Opsiyonel)</label>
+                    <input type="text" name="discount_text" value="{{ old('discount_text', $benefit->discount_text) }}" class="w-full rounded border-slate-300 p-2 border">
+                </div>
+                <div>
+                    <label class="mb-1 block text-sm font-medium">Açıklama (Opsiyonel)</label>
+                    <textarea name="description" rows="4" class="w-full rounded border-slate-300 p-2 border">{{ old('description', $benefit->description) }}</textarea>
+                </div>
+            </div>
         </div>
 
-        <div>
-            <label class="mb-1 block text-sm font-medium">İndirim / Kısa Etiket (Opsiyonel)</label>
-            <input type="text" name="discount_text" value="{{ old('discount_text', $benefit->discount_text) }}" class="w-full rounded border-slate-300 p-2 border">
-        </div>
-
-        <div>
-            <label class="mb-1 block text-sm font-medium">Açıklama (Opsiyonel)</label>
-            <textarea name="description" rows="4" class="w-full rounded border-slate-300 p-2 border">{{ old('description', $benefit->description) }}</textarea>
+        <div class="rounded border border-slate-200 p-4">
+            <h2 class="mb-3 text-sm font-bold uppercase text-slate-500">Bosanski (opsiyonel)</h2>
+            <p class="mb-3 text-xs text-slate-500">Boş bırakılırsa Boşnakça sayfada Türkçe metin gösterilir.</p>
+            <div class="space-y-4">
+                <div>
+                    <label class="mb-1 block text-sm font-medium">Naslov</label>
+                    <input type="text" name="title_bs" value="{{ old('title_bs', $benefit->title_bs) }}" class="w-full rounded border-slate-300 p-2 border">
+                </div>
+                <div>
+                    <label class="mb-1 block text-sm font-medium">Popust / Kratka oznaka</label>
+                    <input type="text" name="discount_text_bs" value="{{ old('discount_text_bs', $benefit->discount_text_bs) }}" class="w-full rounded border-slate-300 p-2 border">
+                </div>
+                <div>
+                    <label class="mb-1 block text-sm font-medium">Opis</label>
+                    <textarea name="description_bs" rows="4" class="w-full rounded border-slate-300 p-2 border">{{ old('description_bs', $benefit->description_bs) }}</textarea>
+                </div>
+            </div>
         </div>
 
         <div>

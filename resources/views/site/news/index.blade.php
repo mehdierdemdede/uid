@@ -12,7 +12,7 @@
                 <a href="{{ t_route('news.show', $item) }}" class="group block overflow-hidden rounded-xl bg-white shadow transition hover:shadow-lg lg:flex">
                     <div class="relative min-h-[240px] w-full shrink-0 overflow-hidden lg:w-2/5">
                         @if($item->image_path)
-                            <img src="/storage/{{ $item->image_path }}" alt="{{ $item->title }}" class="absolute inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-105">
+                            <img src="/storage/{{ $item->image_path }}" alt="{{ $item->localizedTitle() }}" class="absolute inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-105">
                         @else
                             <div class="absolute inset-0 flex items-center justify-center bg-slate-200">
                                 <span class="text-slate-400">{{ __('Görsel Yok') }}</span>
@@ -20,9 +20,9 @@
                         @endif
                     </div>
                     <div class="flex flex-col justify-center p-6 md:p-8">
-                        <h2 class="mb-3 text-xl font-bold text-slate-900 md:text-2xl">{{ $item->title }}</h2>
+                        <h2 class="mb-3 text-xl font-bold text-slate-900 md:text-2xl">{{ $item->localizedTitle() }}</h2>
                         <p class="mb-4 text-base leading-relaxed text-slate-600 line-clamp-3">
-                            {{ $item->summary ?? Str::limit(strip_tags($item->content), 150) }}
+                            {{ $item->localizedSummary() ?? Str::limit(strip_tags($item->localizedContent()), 150) }}
                         </p>
                         <time class="mt-auto text-sm font-medium text-uid-blue">
                             {{ $item->published_at->format('d.m.Y H:i') }}

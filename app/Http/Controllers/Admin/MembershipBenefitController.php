@@ -25,8 +25,11 @@ class MembershipBenefitController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:191',
+            'title_bs' => 'nullable|string|max:191',
             'discount_text' => 'nullable|string|max:191',
+            'discount_text_bs' => 'nullable|string|max:191',
             'description' => 'nullable|string',
+            'description_bs' => 'nullable|string',
             'logo' => 'nullable|image|max:2048',
             'sort_order' => 'nullable|integer|min:0',
             'is_active' => 'boolean',
@@ -34,8 +37,11 @@ class MembershipBenefitController extends Controller
 
         $benefit = new MembershipBenefit();
         $benefit->title = $validated['title'];
+        $benefit->title_bs = $validated['title_bs'] ?? null;
         $benefit->discount_text = $validated['discount_text'] ?? null;
+        $benefit->discount_text_bs = $validated['discount_text_bs'] ?? null;
         $benefit->description = $validated['description'] ?? null;
+        $benefit->description_bs = $validated['description_bs'] ?? null;
         $benefit->sort_order = $validated['sort_order'] ?? 0;
         $benefit->is_active = $request->has('is_active');
 
@@ -59,16 +65,22 @@ class MembershipBenefitController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:191',
+            'title_bs' => 'nullable|string|max:191',
             'discount_text' => 'nullable|string|max:191',
+            'discount_text_bs' => 'nullable|string|max:191',
             'description' => 'nullable|string',
+            'description_bs' => 'nullable|string',
             'logo' => 'nullable|image|max:2048',
             'sort_order' => 'nullable|integer|min:0',
             'is_active' => 'boolean',
         ]);
 
         $benefit->title = $validated['title'];
+        $benefit->title_bs = $validated['title_bs'] ?? null;
         $benefit->discount_text = $validated['discount_text'] ?? null;
+        $benefit->discount_text_bs = $validated['discount_text_bs'] ?? null;
         $benefit->description = $validated['description'] ?? null;
+        $benefit->description_bs = $validated['description_bs'] ?? null;
         $benefit->sort_order = $validated['sort_order'] ?? 0;
         $benefit->is_active = $request->has('is_active');
 
